@@ -1,4 +1,5 @@
 #root {
   max-width: 1800px;
+  box-sizing: border-box;
 }
 

@@ -11,6 +11,7 @@ import {
   TextField,
   InputAdornment,
   Card,
+  Grid,
   CardContent,
   CardMedia,
   Pagination,
@@ -20,8 +21,102 @@ import { BiExport, BiPlus } from "react-icons/bi";
 import { CgImport } from "react-icons/cg";
 import { CiSearch } from "react-icons/ci";
 import { IoTimeOutline } from "react-icons/io5";
+import { makeStyles } from "@mui/styles";
+
+const useStyels=makeStyles({
+  IntegrationsCon:{
+     padding:' 4rem 2rem',
+  },
+  IntegrationHead:{
+    display:'flex',
+    justifyContent:'space-between',
+    marginBottom:'1rem'
+  },
+  IntegrationText:{
+    '&.MuiTypography-root':{
+        fontSize:'2.5rem',
+    }
+  },
+  IntegrationListCon:{
+   display:'flex',
+   alignItems:'center',
+   gap:'1rem',
+   padding:'0'
+  },
+  IntegrationListItem:{
+     '&.MuiListItem-root':{
+        width:'fit-content'
+     }
+  },
+  IntegrationListIcon:{
+    '&.MuiListItemIcon-root':{
+       minWidth:'30px',
+       fontSize:'1.3rem'
+     }
+  },
+  IntegrationSearch:{
+     border:'1px solid lightgrey',
+     borderRadius:'1rem',
+     padding:'1rem',
+    marginBottom:'2rem'
+
+  },
+  IntegrationTextFields:{
+   width:'40%',
+   "& .MuiOutlinedInput-root": {
+      borderRadius:".6rem"
+   }
+  },
+  IntegrationCardsCon:{
+     display:'flex',
+  },
+  IntegrationCard:{
+    border:'1px solid lightgrey',
+    width:'100%',
+    height:'100%',
+
+    '&.MuiPaper-root':{
+         borderRadius:'25px'
+    }
+  },
+  CardContent:{
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
+    flexDirection:'column',
+    borderBottom:'1px solid lightgrey',
+    gap:'1rem',
+    padding:'4rem',
+    height:'80%'
+  },
+  CardReviews:{
+    height:'20%',
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'space-between',
+    '&.MuiCardContent-root':{
+        padding:'.7rem'
+    }
+  },
+  CardReviewItem:{
+    display:'flex',
+    alignItems:'center',    
+  },
+  CardText:{
+     '&.MuiTypography-root':{
+        fontWeight:'100'
+     }
+  },
+  CardIcon:{
+     '&.MuiButtonBase-root':{
+        fontSize:"1rem"
+     }
+  }
+
+})
 
 export default function Integrations() {
+  const style=useStyels();
   const cards = [
     {
       img: "data:image/png;base64,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",
@@ -74,24 +169,24 @@ export default function Integrations() {
   ];
 
   return (
-    <Box>
-      <Box>
+    <Box className={style.IntegrationsCon}>
+      <Box className={style.IntegrationHead} >
         <Box>
-          <Typography>Integrations</Typography>
+          <Typography className={style.IntegrationText} >Integrations</Typography>
           <Box>
             <Box>
-              <List>
-                <ListItem disablePadding>
+              <List className={style.IntegrationListCon}>
+                <ListItem disablePadding className={style.IntegrationListItem}>
                   <ListItemButton>
-                    <ListItemIcon>
+                    <ListItemIcon className={style.IntegrationListIcon}>
                       <CgImport />
                     </ListItemIcon>
-                    <ListItemText primary="Import" />
+                    <ListItemText primary="Import"  />
                   </ListItemButton>
                 </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
+                <ListItem disablePadding className={style.IntegrationListItem}>
+                  <ListItemButton >
+                    <ListItemIcon className={style.IntegrationListIcon}>
                       <BiExport />
                     </ListItemIcon>
                     <ListItemText primary="Export" />
@@ -103,62 +198,76 @@ export default function Integrations() {
           </Box>
         </Box>
         <Box>
-          <Button>
-            <IconButton>
-              <BiPlus />
+          <Button 
+                      sx={{
+                        bgcolor: "#635bff",
+                        color: "white",
+                        textTransform: "none",
+                        borderRadius: ".8rem",
+                        padding:'.1rem .9rem .1rem .5rem',
+                        display:'flex',
+                        gap:'.3rem'
+                      }}
+          >
+            <IconButton sx={{color:'white'}}>
+              <BiPlus  />
             </IconButton>
             <Typography component={"span"}>Add</Typography>
           </Button>
         </Box>
       </Box>
-      <Box>
+      <Box className={style.IntegrationSearch}>
         <TextField
           placeholder="Search integration"
+          className={style.IntegrationTextFields}
           InputProps={{
             type: "search",
             startAdornment: (
-              <InputAdornment position="start">
+              <InputAdornment position="start" sx={{fontSize:'1.6rem'}}>
                 <CiSearch />
               </InputAdornment>
             ),
           }}
         />
       </Box>
-      <Box>
-        {cards.map((ele) => {
+      <Box >
+        <Grid container spacing={3} className={style.IntegrationCardsCon} >
+        {cards.map((ele,index) => {
           return (
-            <Card>
-              <CardContent>
+            <Grid item xs={12} sm={6} md={6} lg={4} key={index}>
+            <Card className={style.IntegrationCard} sx={{ boxShadow: "0"}} >
+              <CardContent className={style.CardContent}>
                 <CardMedia
                   component="img"
-                  height={"50px"}
-                  width={"50px"}
-                  image={ele.img}
+                  image={ele.img }
                   alt="Dropbox"
+                  sx={{width:'50px',height:"50px"}}
                 />
                 <Typography variant="h5">{ele.title}</Typography>
-                <Typography variant="body2">{ele.decription}</Typography>
+                <Typography  sx={{textAlign:"center", paddingInline:'1.5rem',fontWeight:"300"}}>{ele.decription}</Typography>
               </CardContent>
-              <CardContent>
-                <Box>
-                  <IconButton>
+              <CardContent className={style.CardReviews}>
+                <Box className={style.CardReviewItem}>
+                  <IconButton className={style.CardIcon}>
                     <IoTimeOutline />
                   </IconButton>
-                  <Typography>Updated {ele.date}</Typography>
+                  <Typography className={style.CardText}>Updated {ele.date}</Typography>
                 </Box>
-                <Box>
-                  <IconButton>
-                    <CgImport />
+                <Box className={style.CardReviewItem}>
+                  <IconButton className={style.CardIcon}>
+                    <CgImport  />
                   </IconButton>
-                  <Typography>{ele.ratings} installs</Typography>
+                  <Typography className={style.CardText}>{ele.ratings} installs</Typography>
                 </Box>
               </CardContent>
             </Card>
+            </Grid>
           );
         })}
+        </Grid>
       </Box>
-      <Box>
-        <Stack spacing={2}>
+      <Box sx={{display:'flex',alignItems:'center',justifyContent:'center',marginBlock:'1rem'}}>
+        <Stack spacing={2} >
           <Pagination count={3} />
         </Stack>
       </Box>
