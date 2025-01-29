@@ -2,4 +2,13 @@
   max-width: 1800px;
   box-sizing: border-box;
 }
+.customheader{
+   color:#6c707b;
+   height:5rem;
+}
+.customcell{
+  display: flex;
+  align-items: center;
+  color:#6c707b;
+}
 

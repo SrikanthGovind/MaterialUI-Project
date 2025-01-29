@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   IconButton,
@@ -14,101 +15,128 @@ import {
 import { BiExport, BiPlus } from "react-icons/bi";
 import { CgImport } from "react-icons/cg";
 import { CiSearch } from "react-icons/ci";
-import { useState} from "react";
-import { AgGridReact } from "ag-grid-react";
-import 'ag-grid-community/styles/ag-grid.css'; 
-import 'ag-grid-community/styles/ag-theme-alpine.css';
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'; 
-import type { ColDef ,RowSelectionOptions} from "ag-grid-community";
+import { useState } from "react";
+import { AgGridReact, CustomCellRendererProps } from "ag-grid-react";
+import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+import type { ColDef, RowSelectionOptions } from "ag-grid-community";
+import { makeStyles } from "@mui/styles";
+import { customerRowdata } from "../../Utility/data";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-material.css";
+import '../../../App.css'
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-// interface row {
-// 	make: string;
-// 	model: string;
-// 	price: number;
-//   }
-
-// interface col{
-// 	headerName:string,
-// 	field:keyof row
-// }  
 
 const rowSelection: RowSelectionOptions = {
-	mode: "multiRow",
-	headerCheckbox: true,
-  };
+  mode: "multiRow",
+  headerCheckbox: true,
+};
+
+const useStyles = makeStyles({
+  CustomerCon: {
+    padding: " 4rem 2rem",
+  },
+  CustomerHead: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginBottom: "1rem",
+  },
+  CustomerText: {
+    "&.MuiTypography-root": {
+      fontSize: "2.5rem",
+    },
+  },
+  CustomerListCon: {
+    display: "flex",
+    alignItems: "center",
+    gap: "1rem",
+    padding: "0",
+  },
+  CustomerListItem: {
+    "&.MuiListItem-root": {
+      width: "fit-content",
+    },
+  },
+  CustomerListIcon: {
+    "&.MuiListItemIcon-root": {
+      minWidth: "30px",
+      fontSize: "1.3rem",
+    },
+  },
+  CustomerSearch: {
+    border: "1px solid lightgrey",
+    borderRadius: "1rem",
+    padding: "1rem",
+    marginBottom: "2rem",
+  },
+  CustomerTextFields: {
+    width: "40%",
+    "& .MuiOutlinedInput-root": {
+      borderRadius: ".6rem",
+    },
+  },
+});
 
 export default function Customers() {
-		const [rowData] = useState([
-		  {
-			Name: "Mercedes",
-			Email: "Maybach",
-			Location: 175720,
-			Phone: false,
-			Signedup: "December",
-		  },
-		  {
-			Name: "Vauxhall",
-			Email: "Astra",
-			Location: 25795,
-			Phone: false,
-			Signedup: "April",
-		  },
-		  {
-			Name: "Fiat",
-			Email: "Panda",
-			Location: 13724,
-			Phone: false,
-			Signedup: "November",
-		  },
-		  {
-			Name: "Jaguar",
-			Email: "I-PACE",
-			Location: 69425,
-			Phone: true,
-			Signedup: "May",
-		  },
-		  {
-			Name: "Jaguar",
-			Email: "I-PACE",
-			Location: 69425,
-			Phone: true,
-			Signedup: "May",
-		  }
-		]);
-	
-	  const [columnDefs] = useState<ColDef[]>([
-		{field: "Name"},
-		{ field: "Email" },
-		{ field: "Location" },
-		{ field: "Phone"},
-		{field: "Signedup",},
-	  ]);
+  const style = useStyles();
 
-	  const defaultColDef = {
-		flex: 1,
-		minWidth: 100,
-	  };  
-	
+
+  const [columnDefs] = useState<ColDef[]>([
+    { field: "Name" ,
+      headerClass:'customheader',
+      cellClass:'customcell',
+      cellRenderer:(params:CustomCellRendererProps)=>{
+        return (
+          <div style={{display:'flex',alignItems:"center",gap:'1rem'}}>
+            <Avatar src={params.data.img}/>
+            <span>{params.value}</span>
+          </div>
+        )
+      }
+
+    },
+    { field: "Location" ,
+      headerClass:'customheader' ,
+      cellClass:'customcell',
+     },
+    { field: "Email"    ,
+      headerClass:'customheader' ,
+      cellClass:'customcell',
+     },
+    { field: "Phone"    ,
+      headerClass:'customheader' ,
+      cellClass:'customcell',
+     },
+    { field: "Signedup" ,
+      headerClass:'customheader' ,
+      cellClass:'customcell',
+     },
+  ]);
+
+  const defaultColDef = {
+    flex: 1,
+    minWidth: 100,
+  };
+
   return (
-    <Box>
-      <Box>
+    <Box className={style.CustomerCon}>
+      <Box className={style.CustomerHead}>
         <Box>
-          <Typography>Customers</Typography>
+          <Typography className={style.CustomerText}>Customers</Typography>
           <Box>
             <Box>
-              <List>
-                <ListItem disablePadding>
+              <List className={style.CustomerListCon}>
+                <ListItem disablePadding className={style.CustomerListItem}>
                   <ListItemButton>
-                    <ListItemIcon>
+                    <ListItemIcon className={style.CustomerListIcon}>
                       <CgImport />
                     </ListItemIcon>
                     <ListItemText primary="Import" />
                   </ListItemButton>
                 </ListItem>
-                <ListItem disablePadding>
+                <ListItem disablePadding className={style.CustomerListItem}>
                   <ListItemButton>
-                    <ListItemIcon>
+                    <ListItemIcon className={style.CustomerListIcon}>
                       <BiExport />
                     </ListItemIcon>
                     <ListItemText primary="Export" />
@@ -120,21 +148,32 @@ export default function Customers() {
           </Box>
         </Box>
         <Box>
-          <Button>
-            <IconButton>
+          <Button
+            sx={{
+              bgcolor: "#635bff",
+              color: "white",
+              textTransform: "none",
+              borderRadius: ".8rem",
+              padding: ".1rem .9rem .1rem .5rem",
+              display: "flex",
+              gap: ".3rem",
+            }}
+          >
+            <IconButton sx={{ color: "white" }}>
               <BiPlus />
             </IconButton>
             <Typography component={"span"}>Add</Typography>
           </Button>
         </Box>
       </Box>
-      <Box>
+      <Box className={style.CustomerSearch}>
         <TextField
           placeholder="Search integration"
+          className={style.CustomerTextFields}
           InputProps={{
             type: "search",
             startAdornment: (
-              <InputAdornment position="start">
+              <InputAdornment position="start" sx={{ fontSize: "1.6rem" }}>
                 <CiSearch />
               </InputAdornment>
             ),
@@ -142,21 +181,23 @@ export default function Customers() {
         />
       </Box>
       <Box>
-	  <div style={{ height: '500px' }}>
-      <AgGridReact
-        rowData={rowData}
-        columnDefs={columnDefs}
-        rowSelection={rowSelection}
-		defaultColDef={defaultColDef}
-        pagination={true}
-        paginationPageSize={10}
-        paginationPageSizeSelector={[10, 25, 50]}
-      />
-    </div>
-	  </Box>
+          <Box 
+            className="ag-theme-material " 
+style={{ height: "500px" ,border:"1px solid lightgrey"}}
+            >
+          <AgGridReact
+            rowData={customerRowdata}
+            columnDefs={columnDefs}
+            rowSelection={rowSelection}
+            defaultColDef={defaultColDef}
+            rowHeight={70}
+            headerHeight={60}
+            pagination={true}
+            paginationPageSize={10}
+            paginationPageSizeSelector={[10, 25, 50]}
+          />
+        </Box>
+      </Box>
     </Box>
   );
 }
-
-
-

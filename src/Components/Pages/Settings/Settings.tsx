@@ -52,55 +52,55 @@ const useStyles = makeStyles({
       color: "#635bff !important",
     },
   },
-  settingsPasswordcon:{
+  settingsPasswordcon: {
     border: "1px solid lightgrey",
     borderRadius: "1rem",
   },
-  PasswordHead:{
+  PasswordHead: {
     padding: "1rem 2rem",
     borderBottom: "1px solid lightgrey",
   },
-  PasswordTextHead:{
+  PasswordTextHead: {
     "&.MuiTypography-root": {
-        fontSize: "1.4rem",
-      },
+      fontSize: "1.4rem",
+    },
   },
-  PasswordTextPara:{
+  PasswordTextPara: {
     "&.MuiTypography-root": {
-        color: "grey",
-        fontWeight: "200",
-      },
+      color: "grey",
+      fontWeight: "200",
+    },
   },
-   Updatepassword:{
+  Updatepassword: {
     borderBottom: "1px solid lightgrey",
-    padding:'2rem',
-    display:'flex',
-    flexDirection:'column',
-    gap:'2rem'
+    padding: "2rem",
+    display: "flex",
+    flexDirection: "column",
+    gap: "2rem",
   },
-  formFields:{
-     width:'55%',
-         "& .MuiInputLabel-root": {
+  formFields: {
+    width: "55%",
+    "& .MuiInputLabel-root": {
       color: "lightblack",
-      fontSize:'1.1rem',
-      fontWeight:"200",
+      fontSize: "1.1rem",
+      fontWeight: "200",
 
-      '&.Mui-focused': {
-        color: 'gray',
+      "&.Mui-focused": {
+        color: "gray",
       },
     },
 
-     "& .MuiOutlinedInput-root": {
-        borderRadius: ".5rem",
-        "&:hover fieldset": {
-          borderColor: "lightgrey",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "lightgrey",
-          color:'grey'
-        },
-  }
-}
+    "& .MuiOutlinedInput-root": {
+      borderRadius: ".5rem",
+      "&:hover fieldset": {
+        borderColor: "lightgrey",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "lightgrey",
+        color: "grey",
+      },
+    },
+  },
 });
 
 export default function Settings() {
@@ -166,11 +166,13 @@ export default function Settings() {
       <Box className={style.settingsPasswordcon}>
         <Box className={style.PasswordHead}>
           <Typography className={style.PasswordTextHead}>Password</Typography>
-          <Typography className={style.PasswordTextPara}>Update Password</Typography>
+          <Typography className={style.PasswordTextPara}>
+            Update Password
+          </Typography>
         </Box>
         <Box className={style.Updatepassword}>
-            <TextField label="Password" className={style.formFields} />
-            <TextField label="Confirm password" className={style.formFields} />
+          <TextField label="Password" className={style.formFields} />
+          <TextField label="Confirm password" className={style.formFields} />
         </Box>
         <Box sx={{ padding: ".7rem", textAlign: "end" }}>
           <Button

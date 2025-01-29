@@ -16,6 +16,7 @@
     "@mui/material": "^5.16.14",
     "@mui/styles": "^5.16.14",
     "@mui/system": "^6.4.1",
+    "@mui/x-charts": "^7.24.1",
     "@react-icons/all-files": "^4.1.0",
     "ag-grid-community": "^33.0.4",
     "ag-grid-react": "^33.0.4",
