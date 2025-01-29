@@ -75,6 +75,44 @@ const useStyles = makeStyles({
       borderRadius: ".6rem",
     },
   },
+  customeraggrid:{
+    "& .ag-root-wrapper": {
+      borderRadius:'1rem'
+    },
+    "& .ag-row": {
+      fontSize: ".9rem",
+      color: "#6c707b",
+    },
+    "& .ag-header": {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "end",
+    },
+    "& .ag-paging-panel":{
+      height:'50px'
+    },
+    "& .ag-cell ":{
+       display:'flex'
+    },
+    "& .ag-checkbox-input-wrapper":{
+        width:'20px',
+        height:'20px',
+         
+        "&::before":{
+          content:'none'
+        },
+        "&::after":{
+          content:'none'
+        },
+        // "& input":{
+        //   opacity:"1 !important",
+        //   appearance:'auto !important',
+        // },
+    },
+    "& .ag-cell-focus:not(.ag-cell-range-selected):focus-within,":{
+       border:'0'
+    }
+  }
 });
 
 export default function Customers() {
@@ -182,8 +220,8 @@ export default function Customers() {
       </Box>
       <Box>
           <Box 
-            className="ag-theme-material " 
-style={{ height: "500px" ,border:"1px solid lightgrey"}}
+          className={style.customeraggrid}
+            style={{ height: "600px" }}
             >
           <AgGridReact
             rowData={customerRowdata}
@@ -195,6 +233,8 @@ style={{ height: "500px" ,border:"1px solid lightgrey"}}
             pagination={true}
             paginationPageSize={10}
             paginationPageSizeSelector={[10, 25, 50]}
+            className="ag-theme-material"
+
           />
         </Box>
       </Box>

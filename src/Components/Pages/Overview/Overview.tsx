@@ -27,10 +27,9 @@ import { PiDesktopLight } from "react-icons/pi";
 import { IoMdTabletPortrait } from "react-icons/io";
 import { MdOutlineLocalPhone } from "react-icons/md";
 import { GrPowerReset } from "react-icons/gr";
-import { Piedata } from "../../Utility/data";
-import { PieChart } from "@mui/x-charts";
+import { Piedata, Barchartdata } from "../../Utility/data";
+import { BarChart, PieChart } from "@mui/x-charts";
 import "../../../App.css";
-import { bgcolor, display } from "@mui/system";
 
 const useStyles = makeStyles({
   OverviewCon: {
@@ -119,33 +118,36 @@ const useStyles = makeStyles({
   },
   OverviewChartsCon: {
     display: "flex",
-    justifyContent:"space-between",
-
+    justifyContent: "space-between",
   },
   OverviewChart: {
     border: "1px solid lightgrey",
     borderRadius: "1rem",
     width: "68%",
   },
-  OverviewChartHead:{
-    display:'flex',
-    justifyContent:'space-between',
-    borderBottom:'1px solid lightgrey',
-    padding:'1rem'
+  OverviewChartHead: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "1rem",
   },
-  OverviewChartButton:{
-    // padding: "1rem",
+  cardsText: {
+    "& p:nth-child(1)": {
+      color: "red",
+    },
+  },
+  BarChart: {},
+  OverviewChartButton: {
+    padding: "1rem",
     display: "flex",
     alignItems: "center",
     justifyContent: "end",
+    borderTop: "1px solid lightgrey",
   },
   OverviewPiechart: {
     border: "1px solid lightgrey",
     borderRadius: "1rem",
     padding: "1rem 1rem 4rem 1rem",
     width: "30%",
-  },
-  Piechartcon:{
   },
   OverviewPieLabels: {
     display: "flex",
@@ -172,6 +174,13 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "end",
   },
+  OverviewTableButton: {
+    padding: "1rem",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "end",
+    borderTop: "1px solid lightgrey",
+  },
   OverviewTable: {
     width: "68%",
     border: "1px solid lightgrey",
@@ -192,12 +201,6 @@ const useStyles = makeStyles({
     },
   },
 });
-const sizing = {
-    width: 450,
-    height: 300,
-    legend: { hidden: true },
-  };
-  
 
 export default function Overview() {
   const style = useStyles();
@@ -266,7 +269,7 @@ export default function Overview() {
       <Box className={style.OverviewCardsCon}>
         <Box className={style.OverviewCard}>
           <Box className={style.CardContent}>
-            <Box>
+            <Box className={style.cardsText}>
               <Typography className={style.CardContentHead}>Budget</Typography>
               <Typography className={style.CardContentPara}>$24k</Typography>
             </Box>
@@ -351,14 +354,49 @@ export default function Overview() {
       <Box className={style.OverviewChartsCon}>
         <Box className={style.OverviewChart}>
           <Box className={style.OverviewChartHead}>
-            <Typography sx={{fontSize:'1.1rem'}}>Sales</Typography>
-            <Box sx={{display:'flex',alignItems:'center',gap:'.5rem',color:'#6B728E',fontSize:'.9rem'}}>
-                <GrPowerReset />
-              <Typography sx={{fontSize:'.9rem'}}>Sync</Typography>
+            <Typography sx={{ fontSize: "1.1rem" }}>Sales</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: ".5rem",
+                color: "#6B728E",
+                fontSize: ".9rem",
+              }}
+            >
+              <GrPowerReset />
+              <Typography sx={{ fontSize: ".9rem" }}>Sync</Typography>
             </Box>
           </Box>
-          <Box>
-            
+          <Box className={style.BarChart}>
+            <BarChart
+              dataset={Barchartdata}
+              xAxis={[
+                {
+                  scaleType: "band",
+                  dataKey: "month",
+                  disableLine: true,
+                  disableTicks: true,
+                },
+              ]}
+              yAxis={[
+                {
+                  scaleType: "linear",
+                  disableLine: true,
+                  disableTicks: true,
+                },
+              ]}
+              series={[
+                { dataKey: "london", label: "London", color: "#635bff" },
+                { dataKey: "paris", label: "Paris", color: "#d8d6fe" },
+              ]}
+              slotProps={{ legend: { hidden: true } }}
+              width={900}
+              height={400}
+              grid={{
+                horizontal: true,
+              }}
+            />
           </Box>
           <Box className={style.OverviewChartButton}>
             <Typography>Overview </Typography>
@@ -366,18 +404,21 @@ export default function Overview() {
           </Box>
         </Box>
         <Box className={style.OverviewPiechart}>
-          <Box sx={{marginBottom:".5rem"}}>
-            <Typography sx={{fontSize:'1.1rem'}}>Traffic source</Typography>
+          <Box sx={{ marginBottom: ".5rem" }}>
+            <Typography sx={{ fontSize: "1.1rem" }}>Traffic source</Typography>
           </Box>
-          <Box className={style.Piechartcon}>
-            <PieChart series={[
+          <Box>
+            <PieChart
+              series={[
                 {
-                    data:Piedata,
-                    outerRadius: 130,
-                    innerRadius:90,
+                  data: Piedata,
+                  outerRadius: 130,
+                  innerRadius: 90,
                 },
-            ]} 
-            {...sizing}
+              ]}
+              slotProps={{ legend: { hidden: true } }}
+              width={450}
+              height={300}
             />
           </Box>
           <Box className={style.OverviewPieLabels}>
@@ -474,11 +515,11 @@ export default function Overview() {
               rowSelection={"multiple"}
               rowHeight={60}
               defaultColDef={defaultColDef}
-              headerHeight={60}
+                headerHeight={60}
               className="ag-theme-material"
             />
           </div>
-          <Box className={style.OverviewListButton}>
+          <Box className={style.OverviewTableButton}>
             <Typography>View all </Typography>
             <GoArrowRight style={{ fontSize: "1.3rem" }} />
           </Box>

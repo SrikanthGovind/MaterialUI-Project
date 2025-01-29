@@ -1,4 +1,4 @@
-import { rowdata,customerrowdata,Listitem,piedata } from "./typescript"
+import { rowdata,customerrowdata,Listitem,piedata,barchart } from "./typescript"
 export const rowData:rowdata[] =[
     {
     order:'ORD-007',
@@ -16,7 +16,8 @@ export const rowData:rowdata[] =[
     order:'ORD-004',
     customer:'Alexa Richardson',
     date:'Mar 8, 2024',
-    status:'Refunded'
+    status:'Refunded',
+    
     },  
     {
     order:'ORD-003',
@@ -37,7 +38,6 @@ export const rowData:rowdata[] =[
     status:'Delivered'
     }
 ]
-
 
 export const customerRowdata:customerrowdata[]= [
     {
@@ -83,6 +83,24 @@ export const customerRowdata:customerrowdata[]= [
       Signedup: "Mar 8,2024",
       img:'https://cdn.pixabay.com/photo/2024/04/13/02/53/ai-generated-8693088_1280.jpg'
     },
+    {
+      Name: "Marcus Finn",
+      Email: "marcus.finn@devias.io",
+      Location:'Carson City, Nevada, USA',
+      Phone: '415-907-2647',
+      Signedup: "Mar 8,2024",
+      img:'https://cdn.pixabay.com/photo/2015/03/28/16/29/business-696076_1280.jpg'
+
+    },
+    {
+      Name: "Jie Yan",
+      Email: "jie.yan.song@devias.io",
+      Location: 'North Canton, Ohio, USA',
+      Phone: '770-635-2682',
+      Signedup: "Mar 8,2024",
+      img:'https://cdn.pixabay.com/photo/2023/06/09/08/25/ai-generated-8051238_1280.jpg'
+
+    },
   ];
 
     export const ListArray: Listitem[] = [
@@ -120,4 +138,68 @@ export const Piedata:piedata[] = [
       { value: 22, label: 'Phone'  , color:' #fb9a0b' },
     ];
         
+
+ export const Barchartdata:barchart[] = [
+  {
+    london: 59,
+    paris: 57,
+    month: 'Jan',
+  },
+  {
+    london: 50,
+    paris: 52,
+    month: 'Feb',
+  },
+  {
+    london: 26,
+    paris: 40,
+    month: 'Mar',
+  },
+  {
+    london: 54,
+    paris: 56,
+    month: 'Apr',
+  },
+  {
+    london: 20,
+    paris: 10,
+    month: 'May',
+  },
+  {
+    london: 25,
+    paris: 15,
+    month: 'June',
+  },
+  {
+    london: 32,
+    paris: 45,
+    month: 'July',
+  },
+  {
+    london: 65,
+    paris: 60,
+    month: 'Aug',
+  },
+  {
+    london: 51,
+    paris: 51,
+    month: 'Sept',
+  },
+  {
+    london: 60,
+    paris: 65,
+    month: 'Oct',
+  },
+  {
+    london: 67,
+    paris: 64,
+    month: 'Nov',
+  },
+  {
+    london: 61,
+    paris: 70,
+    month: 'Dec',
+  },
+];
+
     

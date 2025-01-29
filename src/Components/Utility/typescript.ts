@@ -31,3 +31,9 @@ export interface Listitem  {
        label:string,
        color:string
   }
+
+  export type barchart ={
+      london:number|null,
+      paris:number|null,
+      month:string|null,
+  } 
