@@ -1,6 +1,8 @@
 #root {
   max-width: 1800px;
   box-sizing: border-box;
+  margin:auto;
+  min-width:360px;
 }
 .customheader{
    color:#6c707b;

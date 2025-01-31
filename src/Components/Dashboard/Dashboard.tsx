@@ -1,6 +1,4 @@
-import { Box, IconButton } from "@mui/material";
-import styled from "@emotion/styled";
-import AppBar from "@mui/material/AppBar";
+import { Box, Drawer, IconButton } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Sidebar from "../Sidebar/Sidebar";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
@@ -14,33 +12,51 @@ import Overview from "../Pages/Overview/Overview";
 import Customers from "../Pages/Customers/Customers";
 import Integrations from "../Pages/Integrations/Integrations";
 import Settings from "../Pages/Settings/Settings";
-
-const CustomDashboard = styled(Box)({
-  display: "flex",
-  flexWrap: "wrap",
-  height: "100vh",
-});
-
-const CustomAppBar = styled(AppBar)({
-  width: "100%",
-  position: "sticky",
-  top: 0,
-  background: "white",
-  boxShadow: "none",
-  borderBlockEnd: "1.5px solid lightgrey",
-});
+import { CiMenuBurger } from "react-icons/ci";
+import { useState } from "react";
+import { CustomDashboard, CustomAppBar, useStyles } from "./dashboard.style";
 
 export default function Dashboard() {
+  const [open, setopen] = useState(false);
+  const style = useStyles();
+
+  function handleopen() {
+    setopen((prev) => !prev);
+  }
+
   return (
-    <CustomDashboard>
-      <Box sx={{ width: "18%", position: "fixed" }}>
+    <CustomDashboard sx={{ position: "relative" }}>
+      <Box
+        sx={{
+          width: "20%",
+          position: "fixed",
+          overflow: "auto",
+          left: "0",
+          display: { sm: "none", xs: "none", md: "block" },
+          bgcolor: "#121621",
+        }}
+      >
+        <Drawer open={open} onClose={handleopen} className={style.drawer}>
+          <Sidebar />
+        </Drawer>
         <Sidebar />
       </Box>
-      <Box sx={{ width: "82%", marginLeft: "auto" }}>
+      <Box
+        sx={{
+          width: { xs: "100%", sm: "100%", md: "80%" },
+          marginLeft: "auto",
+        }}
+      >
         <CustomAppBar>
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Box>
-              <IconButton sx={{fontSize:'2rem'}}>
+            <Box sx={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+              <IconButton
+                sx={{ fontSize: "2rem", display: { sm: "block", md: "none" } }}
+                onClick={handleopen}
+              >
+                <CiMenuBurger />
+              </IconButton>
+              <IconButton sx={{ fontSize: "2rem" }}>
                 <CiSearch />
               </IconButton>
             </Box>
@@ -75,7 +91,7 @@ export default function Dashboard() {
             </Box>
           </Toolbar>
         </CustomAppBar>
-        <Box>
+        <Box sx={{ marginTop: "4rem" }}>
           <Routes>
             <Route path="/" element={<Overview />} />
             <Route path="/customers" element={<Customers />} />

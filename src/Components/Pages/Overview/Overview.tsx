@@ -17,7 +17,6 @@ import { FaIndianRupeeSign } from "react-icons/fa6";
 import { GoArrowRight } from "react-icons/go";
 import { rowData, ListArray } from "../../Utility/data";
 import { ColDef } from "ag-grid-community";
-import { makeStyles } from "@mui/styles";
 import { AgGridReact, CustomCellRendererProps } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
@@ -30,177 +29,7 @@ import { GrPowerReset } from "react-icons/gr";
 import { Piedata, Barchartdata } from "../../Utility/data";
 import { BarChart, PieChart } from "@mui/x-charts";
 import "../../../App.css";
-
-const useStyles = makeStyles({
-  OverviewCon: {
-    padding: " 4rem",
-    display: "flex",
-    flexDirection: "column",
-    gap: "2rem",
-  },
-  OverviewCardsCon: {
-    display: "flex",
-    gap: "2rem",
-    flexWrap: "wrap",
-  },
-  OverviewCard: {
-    border: "1px solid lightgrey",
-    borderRadius: "1rem",
-    padding: "2rem",
-    display: "flex",
-    flexDirection: "column",
-    gap: "1.5rem",
-    flex: "1",
-  },
-  CardContent: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  CardContentHead: {
-    "&.MuiTypography-root": {
-      textTransform: "uppercase",
-      fontSize: ".8rem",
-      color: "#6B728E",
-    },
-  },
-  CardContentPara: {
-    "&.MuiTypography-root": {
-      fontSize: "2.5rem",
-    },
-  },
-  CardImg1: {
-    "&&": {
-      color: "white",
-      background: "#635bff",
-      width: "4rem",
-      height: "4rem",
-      fontSize: "1.7rem",
-    },
-  },
-  CardImg2: {
-    "&.MuiAvatar-root": {
-      color: "white",
-      background: "#15b79f",
-      width: "4rem",
-      height: "4rem",
-      fontSize: "1.7rem",
-    },
-  },
-  CardImg3: {
-    "&.MuiAvatar-root": {
-      color: "white",
-      background: "#fb9a0b",
-      width: "4rem",
-      height: "4rem",
-      fontSize: "1.7rem",
-    },
-  },
-  CardImg4: {
-    "&.MuiAvatar-root": {
-      color: "white",
-      background: "#635bff",
-      fontSize: "2rem",
-      width: "4rem",
-      height: "4rem",
-    },
-  },
-  CardBottomCon: {
-    display: "flex",
-    alignItems: "center",
-    gap: "1rem",
-  },
-  CardStack: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "1.5rem",
-    color: "#15b79f",
-  },
-  OverviewChartsCon: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  OverviewChart: {
-    border: "1px solid lightgrey",
-    borderRadius: "1rem",
-    width: "68%",
-  },
-  OverviewChartHead: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "1rem",
-  },
-  cardsText: {
-    "& p:nth-child(1)": {
-      color: "red",
-    },
-  },
-  BarChart: {},
-  OverviewChartButton: {
-    padding: "1rem",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "end",
-    borderTop: "1px solid lightgrey",
-  },
-  OverviewPiechart: {
-    border: "1px solid lightgrey",
-    borderRadius: "1rem",
-    padding: "1rem 1rem 4rem 1rem",
-    width: "30%",
-  },
-  OverviewPieLabels: {
-    display: "flex",
-    gap: "1rem",
-    justifyContent: "center",
-  },
-
-  OverviewTableCon: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  OverviewListCon: {
-    width: "30%",
-    border: "1px solid lightgrey",
-    borderRadius: "1rem",
-  },
-  OverviewListHead: {
-    padding: "1.5rem",
-    borderBottom: "1px solid lightgrey",
-  },
-  OverviewListButton: {
-    padding: "1rem",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "end",
-  },
-  OverviewTableButton: {
-    padding: "1rem",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "end",
-    borderTop: "1px solid lightgrey",
-  },
-  OverviewTable: {
-    width: "68%",
-    border: "1px solid lightgrey",
-    borderRadius: "1rem",
-  },
-  aggridwrapper: {
-    "& .ag-root-wrapper": {
-      border: "none",
-    },
-    "& .ag-row": {
-      fontSize: ".9rem",
-      color: "#6c707b",
-    },
-    "& .ag-header": {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "end",
-    },
-  },
-});
+import { useStyles } from "./overview.style";
 
 export default function Overview() {
   const style = useStyles();
@@ -208,6 +37,7 @@ export default function Overview() {
   const defaultColDef = useMemo<ColDef>(() => {
     return {
       flex: 1,
+      minWidth:200
     };
   }, []);
 
@@ -269,7 +99,7 @@ export default function Overview() {
       <Box className={style.OverviewCardsCon}>
         <Box className={style.OverviewCard}>
           <Box className={style.CardContent}>
-            <Box className={style.cardsText}>
+            <Box >
               <Typography className={style.CardContentHead}>Budget</Typography>
               <Typography className={style.CardContentPara}>$24k</Typography>
             </Box>
@@ -368,7 +198,7 @@ export default function Overview() {
               <Typography sx={{ fontSize: ".9rem" }}>Sync</Typography>
             </Box>
           </Box>
-          <Box className={style.BarChart}>
+          <Box >
             <BarChart
               dataset={Barchartdata}
               xAxis={[
@@ -391,11 +221,11 @@ export default function Overview() {
                 { dataKey: "paris", label: "Paris", color: "#d8d6fe" },
               ]}
               slotProps={{ legend: { hidden: true } }}
-              width={900}
               height={400}
               grid={{
                 horizontal: true,
               }}
+              sx={{width:'100%'}}
             />
           </Box>
           <Box className={style.OverviewChartButton}>
@@ -404,10 +234,10 @@ export default function Overview() {
           </Box>
         </Box>
         <Box className={style.OverviewPiechart}>
-          <Box sx={{ marginBottom: ".5rem" }}>
+          <Box sx={{ marginBottom: ".5rem",width:"100%" }}>
             <Typography sx={{ fontSize: "1.1rem" }}>Traffic source</Typography>
           </Box>
-          <Box>
+          <Box className={style.PieChart}>
             <PieChart
               series={[
                 {
@@ -417,8 +247,8 @@ export default function Overview() {
                 },
               ]}
               slotProps={{ legend: { hidden: true } }}
-              width={450}
               height={300}
+              sx={{width:'100%'}}
             />
           </Box>
           <Box className={style.OverviewPieLabels}>
@@ -478,7 +308,6 @@ export default function Overview() {
                   </ListItemAvatar>
                   <ListItemText
                     primary={ele.title}
-                    sx={{}}
                     secondary={
                       <>
                         <Typography
@@ -515,7 +344,7 @@ export default function Overview() {
               rowSelection={"multiple"}
               rowHeight={60}
               defaultColDef={defaultColDef}
-                headerHeight={60}
+              headerHeight={60}
               className="ag-theme-material"
             />
           </div>

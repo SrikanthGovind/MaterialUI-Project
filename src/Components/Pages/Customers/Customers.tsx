@@ -19,105 +19,20 @@ import { useState } from "react";
 import { AgGridReact, CustomCellRendererProps } from "ag-grid-react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import type { ColDef, RowSelectionOptions } from "ag-grid-community";
-import { makeStyles } from "@mui/styles";
 import { customerRowdata } from "../../Utility/data";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import '../../../App.css'
+import { useStyles } from "./customer.style";
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-
-const rowSelection: RowSelectionOptions = {
-  mode: "multiRow",
-  headerCheckbox: true,
-};
-
-const useStyles = makeStyles({
-  CustomerCon: {
-    padding: " 4rem 2rem",
-  },
-  CustomerHead: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginBottom: "1rem",
-  },
-  CustomerText: {
-    "&.MuiTypography-root": {
-      fontSize: "2.5rem",
-    },
-  },
-  CustomerListCon: {
-    display: "flex",
-    alignItems: "center",
-    gap: "1rem",
-    padding: "0",
-  },
-  CustomerListItem: {
-    "&.MuiListItem-root": {
-      width: "fit-content",
-    },
-  },
-  CustomerListIcon: {
-    "&.MuiListItemIcon-root": {
-      minWidth: "30px",
-      fontSize: "1.3rem",
-    },
-  },
-  CustomerSearch: {
-    border: "1px solid lightgrey",
-    borderRadius: "1rem",
-    padding: "1rem",
-    marginBottom: "2rem",
-  },
-  CustomerTextFields: {
-    width: "40%",
-    "& .MuiOutlinedInput-root": {
-      borderRadius: ".6rem",
-    },
-  },
-  customeraggrid:{
-    "& .ag-root-wrapper": {
-      borderRadius:'1rem'
-    },
-    "& .ag-row": {
-      fontSize: ".9rem",
-      color: "#6c707b",
-    },
-    "& .ag-header": {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "end",
-    },
-    "& .ag-paging-panel":{
-      height:'50px'
-    },
-    "& .ag-cell ":{
-       display:'flex'
-    },
-    "& .ag-checkbox-input-wrapper":{
-        width:'20px',
-        height:'20px',
-         
-        "&::before":{
-          content:'none'
-        },
-        "&::after":{
-          content:'none'
-        },
-        // "& input":{
-        //   opacity:"1 !important",
-        //   appearance:'auto !important',
-        // },
-    },
-    "& .ag-cell-focus:not(.ag-cell-range-selected):focus-within,":{
-       border:'0'
-    }
-  }
-});
 
 export default function Customers() {
   const style = useStyles();
 
+  const rowSelection: RowSelectionOptions = {
+    mode: "multiRow",
+    headerCheckbox: true,
+  };
 
   const [columnDefs] = useState<ColDef[]>([
     { field: "Name" ,
@@ -153,7 +68,7 @@ export default function Customers() {
 
   const defaultColDef = {
     flex: 1,
-    minWidth: 100,
+    minWidth: 260,
   };
 
   return (
@@ -221,7 +136,7 @@ export default function Customers() {
       <Box>
           <Box 
           className={style.customeraggrid}
-            style={{ height: "600px" }}
+            style={{height: "600px",overflow:'scroll'}}
             >
           <AgGridReact
             rowData={customerRowdata}
@@ -234,7 +149,6 @@ export default function Customers() {
             paginationPageSize={10}
             paginationPageSizeSelector={[10, 25, 50]}
             className="ag-theme-material"
-
           />
         </Box>
       </Box>
