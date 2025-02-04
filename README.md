@@ -62,13 +62,15 @@ This will start the development server, and you can access the app by visiting `
 
 ## Screenshots
 
+![App Screenshot](https://github.com/user-attachments/assets/e243fef0-f9ae-4713-bac4-41220502e736 )
+
 ![App Screenshot](https://github.com/user-attachments/assets/42495ce1-87aa-45b0-b1b7-9db5a4023b33)
 
 ![App Screenshot](https://github.com/user-attachments/assets/6503e77a-387d-45f0-9328-663f47835d1f)
 
-![App Screenshot]([(https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://github.com/SrikanthGovind/MaterialUI-Project/blob/1f946f26da3bdc90404d866dd5e01cf2e136f409/Public/Screenshot%202025-02-04%20at%2012.24.51%E2%80%AFPM.png ))
+![App Screenshot](https://github.com/user-attachments/assets/91a1b1d9-2841-46d1-a65d-31f8fa22b0dc)
 
-![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://github.com/SrikanthGovind/MaterialUI-Project/blob/1f946f26da3bdc90404d866dd5e01cf2e136f409/Public/Screenshot%202025-02-04%20at%2012.25.05%E2%80%AFPM.png ))
+
 
 
 
