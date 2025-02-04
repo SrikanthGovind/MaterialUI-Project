@@ -7,7 +7,7 @@ import {
   Button,
   TextField,
 } from "@mui/material";
-import { useStyles } from "./settings.style";
+import { useStyles } from "./Settings.style";
 
 export default function Settings() {
   const style = useStyles();

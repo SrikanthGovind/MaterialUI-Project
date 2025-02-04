@@ -14,14 +14,14 @@ import Integrations from "../Pages/Integrations/Integrations";
 import Settings from "../Pages/Settings/Settings";
 import { CiMenuBurger } from "react-icons/ci";
 import { useState } from "react";
-import { CustomDashboard, CustomAppBar, useStyles } from "./dashboard.style";
+import { CustomDashboard, CustomAppBar, useStyles } from "./Dashboard.style";
 
 export default function Dashboard() {
-  const [open, setopen] = useState(false);
+  const [open, setOpen] = useState(false);
   const style = useStyles();
 
-  function handleopen() {
-    setopen((prev) => !prev);
+  function handleOpen() {
+    setOpen((prev) => !prev);
   }
 
   return (
@@ -36,7 +36,7 @@ export default function Dashboard() {
           bgcolor: "#121621",
         }}
       >
-        <Drawer open={open} onClose={handleopen} className={style.drawer}>
+        <Drawer open={open} onClose={handleOpen} className={style.drawer}>
           <Sidebar />
         </Drawer>
         <Sidebar />
@@ -52,7 +52,7 @@ export default function Dashboard() {
             <Box sx={{ display: "flex", gap: "1rem", alignItems: "center" }}>
               <IconButton
                 sx={{ fontSize: "2rem", display: { sm: "block", md: "none" } }}
-                onClick={handleopen}
+                onClick={handleOpen}
               >
                 <CiMenuBurger />
               </IconButton>

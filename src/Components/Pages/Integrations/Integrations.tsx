@@ -22,7 +22,7 @@ import { CgImport } from "react-icons/cg";
 import { CiSearch } from "react-icons/ci";
 import { IoTimeOutline } from "react-icons/io5";
 import { Cardsdata } from "../../Utility/data";
-import { useStyels } from "./integrations.style";
+import { useStyels } from "./Integrations.style";
 export default function Integrations() {
   const style = useStyels();
   

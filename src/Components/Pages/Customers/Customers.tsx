@@ -22,8 +22,8 @@ import type { ColDef, RowSelectionOptions } from "ag-grid-community";
 import { customerRowdata } from "../../Utility/data";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
-import '../../../App.css'
-import { useStyles } from "./customer.style";
+import "../../../App.css";
+import { useStyles } from "./Customer.style";
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export default function Customers() {
@@ -35,35 +35,23 @@ export default function Customers() {
   };
 
   const [columnDefs] = useState<ColDef[]>([
-    { field: "Name" ,
-      headerClass:'customheader',
-      cellClass:'customcell',
-      cellRenderer:(params:CustomCellRendererProps)=>{
+    {
+      field: "Name",
+      headerClass: "customheader",
+      cellClass: "customcell",
+      cellRenderer: (params: CustomCellRendererProps) => {
         return (
-          <div style={{display:'flex',alignItems:"center",gap:'1rem'}}>
-            <Avatar src={params.data.img}/>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <Avatar src={params.data.img} />
             <span>{params.value}</span>
           </div>
-        )
-      }
-
+        );
+      },
     },
-    { field: "Location" ,
-      headerClass:'customheader' ,
-      cellClass:'customcell',
-     },
-    { field: "Email"    ,
-      headerClass:'customheader' ,
-      cellClass:'customcell',
-     },
-    { field: "Phone"    ,
-      headerClass:'customheader' ,
-      cellClass:'customcell',
-     },
-    { field: "Signedup" ,
-      headerClass:'customheader' ,
-      cellClass:'customcell',
-     },
+    { field: "Location", headerClass: "customheader", cellClass: "customcell" },
+    { field: "Email", headerClass: "customheader", cellClass: "customcell" },
+    { field: "Phone", headerClass: "customheader", cellClass: "customcell" },
+    { field: "Signedup", headerClass: "customheader", cellClass: "customcell" },
   ]);
 
   const defaultColDef = {
@@ -134,10 +122,10 @@ export default function Customers() {
         />
       </Box>
       <Box>
-          <Box 
+        <Box
           className={style.customeraggrid}
-            style={{height: "600px",overflow:'scroll'}}
-            >
+          style={{ height: "600px", overflow: "scroll" }}
+        >
           <AgGridReact
             rowData={customerRowdata}
             columnDefs={columnDefs}

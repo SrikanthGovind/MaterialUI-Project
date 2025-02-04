@@ -19,15 +19,15 @@ import { IoIosArrowDown } from "react-icons/io";
 import { BsArrowUpRightSquare } from "react-icons/bs";
 import { Link} from "react-router-dom";
 import { useState } from "react";
-import { useStyles } from "./sidebar.style";
+import { useStyles } from "./Sidebar.style";
 
 export default function Sidebar() {
-  const [isselected, setselected] = useState<number>(0);
+  const [isSelected, setSelected] = useState<number>(0);
 
   const classes = useStyles();
 
-  function handleselect(index: number) {
-    setselected(index);
+  function handleSelect(index: number) {
+    setSelected(index);
   }
 
   return (
@@ -68,8 +68,8 @@ export default function Sidebar() {
             component={Link}
             to="/"
             className={classes.menuItem}
-            selected={isselected === 0}
-            onClick={() => handleselect(0)}
+            selected={isSelected === 0}
+            onClick={() => handleSelect(0)}
           >
             <ListItemIcon>
               <AiFillSlackCircle />
@@ -80,8 +80,8 @@ export default function Sidebar() {
             component={Link}
             to="/customers"
             className={classes.menuItem}
-            selected={isselected === 1}
-            onClick={() => handleselect(1)}
+            selected={isSelected === 1}
+            onClick={() => handleSelect(1)}
           >
             <ListItemIcon>
               <MdOutlinePeopleAlt />
@@ -92,8 +92,8 @@ export default function Sidebar() {
             component={Link}
             to="/integrations"
             className={classes.menuItem}
-            selected={isselected === 2}
-            onClick={() => handleselect(2)}
+            selected={isSelected === 2}
+            onClick={() => handleSelect(2)}
           >
             <ListItemIcon>
               <TbSwitch3 />
@@ -104,8 +104,8 @@ export default function Sidebar() {
             component={Link}
             to="/settings"
             className={classes.menuItem}
-            selected={isselected === 3}
-            onClick={() => handleselect(3)}
+            selected={isSelected === 3}
+            onClick={() => handleSelect(3)}
           >
             <ListItemIcon>
               <IoSettingsOutline />
@@ -116,8 +116,8 @@ export default function Sidebar() {
             component={Link}
             to="/account"
             className={classes.menuItem}
-            selected={isselected === 4}
-            onClick={() => handleselect(4)}
+            selected={isSelected === 4}
+            onClick={() => handleSelect(4)}
           >
             <ListItemIcon>
               <PersonIcon />
@@ -126,8 +126,8 @@ export default function Sidebar() {
           </MenuItem>
           <MenuItem
             className={classes.menuItem}
-            selected={isselected === 5}
-            onClick={() => handleselect(5)}
+            selected={isSelected === 5}
+            onClick={() => handleSelect(5)}
           >
             <ListItemIcon>
               <AiFillCloseSquare />

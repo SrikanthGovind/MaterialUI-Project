@@ -29,7 +29,7 @@ import { GrPowerReset } from "react-icons/gr";
 import { Piedata, Barchartdata } from "../../Utility/data";
 import { BarChart, PieChart } from "@mui/x-charts";
 import "../../../App.css";
-import { useStyles } from "./overview.style";
+import { useStyles } from "./Overview.style";
 
 export default function Overview() {
   const style = useStyles();

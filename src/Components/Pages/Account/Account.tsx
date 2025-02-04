@@ -8,7 +8,7 @@ import {
 import { Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
-import { useStyles } from "./account.style";
+import { useStyles } from "./Account.style";
 
 export default function Account() {
   const style = useStyles();
