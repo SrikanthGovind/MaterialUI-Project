@@ -61,7 +61,7 @@ This will start the development server, and you can access the app by visiting `
 
 
 ## Screenshots
-![App Screenshot](https://github.com/user-attachments/assets/91a1b1d9-2841-46d1-a65d-31f8fa22b0dc )
+![App Screenshot](https://github.com/user-attachments/assets/c4c0acd7-ddab-4b86-aa05-d0c8a730e17c)
 
 ![App Screenshot](https://github.com/user-attachments/assets/e243fef0-f9ae-4713-bac4-41220502e736 )
 
